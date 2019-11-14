@@ -1,0 +1,15 @@
+.thumbnail {
+    border: 1px solid #7f7f7f;
+    margin-bottom: 20px;
+}
+.thumbnail img{
+   /* max-height: 150px;
+    align-self: center;*/
+}
+.thumbnail .description {
+    color: #7f7f7f;
+}
+.price {
+    font-weight: bold;
+    font-size: 16px;
+}

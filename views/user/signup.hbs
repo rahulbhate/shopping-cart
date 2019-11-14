@@ -1,0 +1,58 @@
+
+ <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="h3 mb-3 text-black">Sign Up</h2>
+               {{#if hasErrors}}
+                    <div class="alert alert-danger">
+                        {{# each messages}}
+                        <p>{{this}}</p>
+                        {{/each}}
+                    </div>
+                {{/if}}
+          </div>
+          <div class="col-md-7">
+
+            <form action="/user/signup" method="post" role="form">
+              
+              <div class="p-3 p-lg-5 border">
+                 <div class="form-group row">
+                  <div class="col-md-12">
+                    <label for="form_email" class="text-black">Email <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="form_email" name="email" placeholder="">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-12">
+                    <label for="form_password" class="text-black">Password <span class="text-danger">*</span></label>
+                    <input type="password" class="form-control" id="form_password" name="password" placeholder="">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-lg-12">
+                       <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Sign Up">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-5 ml-auto">
+            <div class="p-4 border mb-3">
+              <span class="d-block text-primary h6 text-uppercase">New York</span>
+              <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p>
+            </div>
+            <div class="p-4 border mb-3">
+              <span class="d-block text-primary h6 text-uppercase">London</span>
+              <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p>
+            </div>
+            <div class="p-4 border mb-3">
+              <span class="d-block text-primary h6 text-uppercase">Canada</span>
+              <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
