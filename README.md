@@ -6,8 +6,14 @@
 
 ###
   step 1: Clone the repository 
+  
   step 2: In terminal window go to shopping-cart folder.
+  
+  Step 5: Create .env file to connect to Mongo database.
+  
   step 3: In terminal run command: npm install
+  
   step 4: Run the project by running command: npm start
+  
   step 5: Access url in browser as http://localhost:3000
 ####
