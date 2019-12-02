@@ -19,15 +19,14 @@
                     </div>
                   </div>
                   <div class="btn-group">
-                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference" data-toggle="dropdown">Reference</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                      <a class="dropdown-item" href="#">Relevance</a>
-                      <a class="dropdown-item" href="#">Name, A to Z</a>
-                      <a class="dropdown-item" href="#">Name, Z to A</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Price, low to high</a>
-                      <a class="dropdown-item" href="#">Price, high to low</a>
-                    </div>
+                    <select class="dropdown-menu-second">
+                          <option value="" disabled selected>Reference</option>
+                          <option class="dropdown-item" value="Relevance">Relevance</option>
+                          <option class="dropdown-item" value="AZ">Name, A to Z</option>
+                          <option class="dropdown-item" value="ZA">Name, Z to A</option>
+                          <option class="dropdown-item" value="LH">Price, low to high</option>
+                          <option class="dropdown-item" value="HL">Price, high to low</option>
+                        </select>
                   </div>
                 </div>
               </div>
@@ -39,10 +38,9 @@
                 </div>
               </div>
         </div>
-            {{# each products}}
+           
             <div class="row mb-5">
-               {{# each this}}
-
+              {{# each products}}
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
@@ -58,7 +56,7 @@
               </div>
               {{/each}}
             </div>
-            {{/each}}
+         
             <div class="row" data-aos="fade-up">
               <div class="col-md-12 text-center">
                 <div class="site-block-27">
@@ -176,11 +174,18 @@
         
       </div>
     </div>
+
+<div style="background:rgb(118, 121, 122); color: white;">{{calculation 50}}</div>
+<div style="background:rgb(118, 121, 122); color: white;" id="ideal"></div>
+<button id="ClickMe">Click Me</button>
 <script>
-  $(document).ready(function(){
-      $(".dropdown-menu a").click(function(){
-       var a1_text = $('.dropdown-item').text();
-       alert(a1_text);
-    });
+    $(document).ready(function(){
+       $(".dropdown-menu-second").change(function(){
+         var html= '{{#list products}}{{title}}{{price}}{{/list}}';
+         $('#ideal').replaceWith(html);
   });
+        //alert($( ".dropdown-menu-second option:selected" ).text());
+        //alert($( ".dropdown-menu-second" ).val());
+    });
+   
 </script>

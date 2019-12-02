@@ -17,6 +17,30 @@ router.get('/', function(req, res, next) {
   });
  
 });
+router.get('/example', function(req, res, next){
+  var successMsg = req.flash('success')[0];
+  Product.find({}, {}, function(e, docs) {
+    var productArray = [];
+      var productCount = 3;
+      
+      // for(var i=0; i< docs.length;i+=productCount){
+      //    productArray.push(docs.slice(i, i + productCount))
+      // }
+    res.render('shop/example', {products : docs, successMsg: successMsg, noMessages: !successMsg});
+});
+  // Product.find(function(error,docs){
+  //   var productArray = [];
+  //   var productCount = 3;
+    
+  //   for(var i=0; i< docs.length;i+=productCount){
+  //     productArray.push(docs.slice(i, i + productCount))
+  //   }
+  //   res.render('shop/example', { title: 'Online Shopping', products: productArray, people: [{firstName: "Rahul", lastName: "Bhate"},{firstName: "Rashmi", lastName: "Basnet"},{firstName: "Veda", lastName: "Bhate"}], successMsg: successMsg, noMessages: !successMsg });
+  // });
+});
+router.get('/example1', function(req, res, next){
+    res.render('shop/example1', { title: 'Online Shopping'});
+  });
 
 router.get('/add-to-cart/:id', function(req, res, next){
   var productId = req.params.id;

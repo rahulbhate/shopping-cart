@@ -1,0 +1,27 @@
+{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.min.js"></script> --}}
+
+<script>
+Handlebars.registerHelper("studyStatus", function(passingYear){
+	if(passingYear < 2015) return "passed";
+  	else return "not passed";
+})
+
+//Retrieve the template data from the HTML .
+var template = $('#handlebars-demo').html();
+var string ="dfdfdf";
+var context = {
+  "students":[
+    {"name" : "John", "passingYear" : 2013},
+    {"name" : "Doe" , "passingYear" : 2016}
+  ]
+}
+
+//Compile the template data into a function
+var templateScript = Handlebars.compile(template);
+
+var html = templateScript(string);
+console.log(html);
+//html = 'My name is Ritesh Kumar . I am a developer.'
+
+$(document.body).append(html);
+</script>

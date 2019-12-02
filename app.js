@@ -1,5 +1,6 @@
 require('./db_connection.js');
 require('./config/passport');
+//require('./helper.js');
 var createError = require('http-errors');
 var expressHbs = require('express-handlebars');
 var express = require('express');
@@ -7,6 +8,7 @@ const mongoose = require('mongoose');
 var path = require('path');
 var bodyParser = require('body-parser');
 const cors = require('cors');
+//var handleBar = require('handlebars');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
@@ -18,6 +20,7 @@ var indexRouter = require('./routes/index');
 var userRoutes = require('./routes/user');
 var contactRoutes = require('./routes/contact');
 var app = express();
+app.enable('view cache');
 app.use(express.static(__dirname + '/public/images'));
 // CORS middleware
 app.use(function(req, res, next) {
@@ -28,6 +31,7 @@ app.use(function(req, res, next) {
     'Access-Control-Allow-Methods',
     'GET, POST, PATCH, PUT, DELETE, OPTIONS',
   );
+  
   // Allow Headers
   res.header(
     'Access-Control-Allow-Headers',
@@ -42,11 +46,31 @@ app.use(function(req, res, next) {
   next();
 });
 // view engine setup
+const hbs = expressHbs.create({
+  defaultLayout:'layout',
+  extname:'.hbs',
+  //create custom helpers... 
+  helpers: {
+    calculation: function(value){
+      return value * 5
+    },
+    list: function(value, option){
+      console.log(value);
+      const sortedProducts = value.sort((a,b) => (a.price - b.price));
+      let out= "<ul>";
+      for(let i=0; i < sortedProducts.length; i ++){
+           out = out + "<li>" + option.fn(sortedProducts[i]) + "</li>";
+      }
+      return out +  "</ul>";
+    }
+  }
+});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.engine('.hbs',expressHbs({defaultLayout:'layout',extname:'.hbs'}));
-app.set('view engine', '.hbs');
+app.engine('.hbs',hbs.engine);
+// app.set('view engine', '.hbs');
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -76,6 +100,7 @@ app.use('/user', userRoutes);
 app.use('/contact', contactRoutes);
 app.use('/', indexRouter);
 
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -91,5 +116,4 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 module.exports = app;
