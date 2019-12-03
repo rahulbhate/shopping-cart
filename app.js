@@ -57,11 +57,11 @@ const hbs = expressHbs.create({
     list: function(value, option){
       console.log(value);
       const sortedProducts = value.sort((a,b) => (a.price - b.price));
-      let out= "<ul>";
+      let out= "";
       for(let i=0; i < sortedProducts.length; i ++){
-           out = out + "<li>" + option.fn(sortedProducts[i]) + "</li>";
+           out = out  + option.fn(sortedProducts[i]);
       }
-      return out +  "</ul>";
+      return out;
     }
   }
 });

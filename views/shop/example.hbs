@@ -39,9 +39,9 @@
               </div>
         </div>
            
-            <div class="row mb-5">
+            <div class="row mb-5" id="ideal">
               {{# each products}}
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up" >
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
                     <a href="/add-to-cart/{{this._id}}"><img src="/img/product-{{this.image}}.jpg" alt="Image placeholder" class="img-fluid"></a>
@@ -176,13 +176,11 @@
     </div>
 
 <div style="background:rgb(118, 121, 122); color: white;">{{calculation 50}}</div>
-<div style="background:rgb(118, 121, 122); color: white;" id="ideal"></div>
 <button id="ClickMe">Click Me</button>
 <script>
     $(document).ready(function(){
        $(".dropdown-menu-second").change(function(){
-         var html= '{{#list products}}{{title}}{{price}}{{/list}}';
-         $('#ideal').replaceWith(html);
+         $('#ideal').replaceWith('<div class=row mb-5>{{#list products}}<div class=col-sm-6 col-lg-4 mb-4 data-aos=fade-up><div class=block-4 text-center border><figure class=block-4-image><a href=/add-to-cart/{{this._id}}><img src=/img/product-{{this.image}}.jpg alt=Image placeholder class=img-fluid></a></figure><div class=block-4-text p-4><h3><a href=/add-to-cart/{{this._id}}>{{this.title}}</a></h3><p class=mb-0>{{this.description}}</p><p class=text-primary font-weight-bold>${{this.price}}</p><p><a href=/add-to-cart/{{this._id}} class=buy-now btn btn-sm btn-primary>Add To Cart</a></p></div></div></div>{{/list}}</div>');
   });
         //alert($( ".dropdown-menu-second option:selected" ).text());
         //alert($( ".dropdown-menu-second" ).val());
